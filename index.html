@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>digifab_18</title>
+    <link rel="stylesheet" href="https://juppoyokokawa.github.io/pages_test/css/style.css" />
+</head>
+<body>
+  <h1>digifab_18</h1>
+  <hr>
+  <p>平成30年度前期の集中講義「デジタルファブリケーション コード・マシン・ハンド」のprocessingの授業はここを元に進めていきます。</p>
+
+
+  <h3>Processingとは</h3>
+  <blockquote cite="https://ja.wikipedia.org/wiki/Processing">
+    <p>
+    Processing（プロセシング）は、キャセイ・レアス（Casey Reas）とベンジャミン・フライ（Benjamin Fry）によるオープンソースプロジェクトであり、かつてはMITメディアラボで開発されていた。電子アートとビジュアルデザインのためのプログラミング言語であり、統合開発環境である。アーティストによるコンテンツ制作作業のために、詳細な設定を行う関数を排除している。 視覚的なフィードバックが即座に得られるため、初心者がプログラミングを学習するのに適しており、電子スケッチブックの基盤としても利用できる。Java を単純化し、グラフィック機能に特化した言語といえる。
+    </p>
+    <a href="https://ja.wikipedia.org/wiki/Processing" target="_blank">Processing - Wikipedia</a>
+  </blockquote>
+  <p><ul>
+    <li>オープンソースで開発されているプログラミング言語&amp;統合開発環境</li>
+    <li>視覚的な表現（イメージの生成、アニメーション、インタラクション）が他のプログラミング言語に比べて扱いやすい</li>
+    <li>開発環境の設定が簡単</li>
+    <li>ライブラリが豊富</li>
+  </ul></p>
+  <hr>
+
+  <h3>Processingのダウンロード</h3>
+  <a href="https://processing.org/" target="_blank">公式サイト</a>
+  <p><a href="https://juppoyokokawa.github.io/pages_test/data/2D-modeling.zip">サンプルファイル(2D)</a></p>
+  <hr>
+
+  <h3>プログラミングの基本</h3>
+  <h4>変数</h4>
+  <p>"数字"とか"文字"とかが入る箱<br>
+  変数はint(整数), float(浮動小数), String(文字列)とかがある</p>
+  <a href="http://www9.plala.or.jp/sgwr-t/c/sec02.html#s2-2" target="_blank">http://www9.plala.or.jp/sgwr-t/c/sec02.html#s2-2</a>
+  <h4>演算子</h4>
+  <p>変数を計算するときに使う
+    "+", "-", "*", "/", "%", "="とかがある。</p>
+  <a href="http://www9.plala.or.jp/sgwr-t/c/sec03.html" target="_blank">http://www9.plala.or.jp/sgwr-t/c/sec03.html</a>
+  <h4>関数</h4>
+  <p>変数とか他の関数とかが入ってる"でかい箱"
+    プログラムを処理する部分</p>
+  <h4>制御文</h4>
+  <p>プログラムを場合分けとか繰り返しとかしてくれる
+    ifとかforとかwhileとかがある。</p>
+  <a href="http://www9.plala.or.jp/sgwr-t/c/sec06.html" target="_blank">http://www9.plala.or.jp/sgwr-t/c/sec06.html</a>
+  <hr>
+
+  <h3>2Dのデータを作る</h3>
+  <p>processingの初歩をまず最初にやって、最終的に2DのデータをSVGで書き出します。</p>
+  <h4>processingで何か書く</h4>
+  <p>/sample01_firstと/sample02_drawを参照してください。</p>
+
+  <h4>マウス、if文</h4>
+  <p>/sample03_mouseを参照してください。</p>
+
+  <h4>for文、乱数の生成</h4>
+  <p>/sample04_randomを参照してください。</p>
+
+  <h4>SVGの書き出し</h4>
+  <p>/sample05_svgと/sample06_svg_v2を参照してください。</p>
+  <br>
+  <small>(以下、余裕があれば見てみてください)</small>
+  <h4>配列</h4>
+  <p>/sample07_mouse_2を参照してください。</p>
+
+  <h4>マイク</h4>
+  <p>/sample08_soundを参照してください。</p>
+
+  <h4>波形の描画</h4>
+  <p>/sample09_waveを参照してください。</p>
+  <hr>
+
+  <h3>参考</h3>
+  <ul>
+  <li><a href="https://www.processing.org/reference/" target="_blank">公式リファレンス</a></li>
+  <li><a href="https://www.openprocessing.org/browse/#" target="_blank">OpenProcessing</a></li>
+  <li><a href="https://shiffman.net/" target="_blank">Shiffman先生</a></li>
+  <li><a href="https://www.youtube.com/user/shiffman/playlists?shelf_id=2&sort=dd&view=50" target="_blank">Shiffman先生-Processing基礎</a></li>
+  </ul>
+  <h3>書籍リスト</h3>
+  <ul>
+      <li>『Processing:ビジュアルデザイナーとアーティストのためのプログラミング入門』<br>
+        <small>ビー・エヌ・エヌ新社 (2015/9/20) 978-4861009501<a href="https://www.amazon.co.jp/dp/4861009502" target="_blank"> amazon</a></small></li>
+      <li>『Design By Numbers―デジタル・メディアのデザイン技法』<br>
+        <small>ソフトバンククリエイティブ (2001/03) 978-4797315271<a href="https://www.amazon.co.jp/dp/479731527X" target="_blank"> amazon</small></a></li>
+      <li>『Digital Fabrications: Architectural and Material Techniques (Architecture Briefs)』<br>
+        <small>Princeton Architectural Press; 1版 (2009/7/1) 978-1568987903<a href="https://www.amazon.co.jp/dp/1568987900" target="_blank"> amazon</a></small></li>
+      <li>『［普及版］ジェネラティブ・アート―Processingによる実践ガイド』<br>
+        <small>ビー・エヌ・エヌ新社; 普及版 (2014/11/21) 978-4861009631<a href="https://www.amazon.co.jp/dp/4861009634" target="_blank"> amazon</a></small></li>
+      <li>『Processingをはじめよう 第2版 (Make: PROJECTS)』<br>
+        <small>オライリージャパン; 第2版 (2016/9/7) 978-4873117737<a href="https://www.amazon.co.jp/dp/4873117739" target="_blank"> amazon</a></small></li>
+      <li>『退屈をぶっとばせ! ―自分の世界を広げるために本気で遊ぶ (Make: Japan Books)』<br>
+        <small>オライリージャパン (2018/5/26) 978-4873118390<a href="https://www.amazon.co.jp/dp/4873118395" target="_blank"> amazon</a></small></li>
+      <li>『FabLab: Of Machines, Makers and Inventors (Cultural and Media Studies)』<br>
+        <small>Transcript Verlag (2014/1/21) 978-3837623826<a href="https://www.amazon.co.jp/dp/3837623823" target="_blank"> amazon</a></small></li>
+      <li>『FORM+CODE -デザイン／アート／建築における、かたちとコード』<br>
+        <small>ビー・エヌ・エヌ新社 (2011/4/25) 978-4861007514<a href="https://www.amazon.co.jp/dp/4861007518" target="_blank"> amazon</a></small></li>
+      <li>『デザイン・ウィズ・コンピュータ』<br>
+        <small>エムディエヌコーポレーション; 改訂版 (2003/03) 978-4844356844<a href="https://www.amazon.co.jp/dp/4844356844" target="_blank"> amazon</a></small></li>
+      <li>『オープンデザイン ―参加と共創から生まれる「つくりかたの未来」 (Make: Japan Books)』<br>
+         <small>オライリージャパン (2013/8/24) 978-4873116310<a href="https://www.amazon.co.jp/dp/4873116317" target="_blank"> amazon</a></small></li>
+      <li>『樹木 (コンピューター・グラフィックス・シリーズ)』<br>
+        <small>築地書館 (1983/04) 978-4806767725<a href="https://www.amazon.co.jp/dp/4806767727" target="_blank"> amazon</a></small></li>
+      <li>『FABに何が可能か 「つくりながら生きる」21世紀の野生の思考』<br>
+        <small>フィルムアート社 (2013/8/26) 978-4845913046 <a href="https://www.amazon.co.jp/dp/4845913046" target="_blank"> amazon</a></small></li>
+      <li>『作ることで学ぶ ―Makerを育てる新しい教育のメソッド (Make:Japan Books)』<br>
+        <small>オライリージャパン (2015/3/25) 978-4873117201<a href="https://www.amazon.co.jp/dp/4873117208" target="_blank"> amazon</a></small></li>
+      <li>『メイキング 人類学・考古学・芸術・建築』<br>
+        <small>左右社 (2017/9/14) 978-4865281798<a href="https://www.amazon.co.jp/dp/4865281797" target="_blank"> amazon</a></small></li>
+      <li>『Designing Reality: How to Survive and Thrive in the Third Digital Revolution』<br>
+        <small>Basic Books (2017/11/14) 978-0465093472<a href="https://www.amazon.co.jp/dp/0465093477" target="_blank"> amazon</a></small></li>
+      <li>『民主化するイノベーションの時代』<br>
+        <small>ファーストプレス (2005/12/9) 978-4903241074<a href="https://www.amazon.co.jp/dp/4903241076" target="_blank"> amazon</a></small></li>
+      <li>『カラー・アズ・ア・コンセプト―デジタル時代の色彩論』<br>
+        <small>美術出版社 (1997/12) 978-4568520194<a href="https://www.amazon.co.jp/dp/4568520193" target="_blank"> amazon</a></small></li>
+      <li>『マインドストーム―子供、コンピューター、そして強力なアイデア』<br>
+        <small>未来社; 新装版 (1995/3/1) 978-4624400439<a href="https://www.amazon.co.jp/dp/4624400437" target="_blank"> amazon</a></small></li>
+      <li>『Fab ―パーソナルコンピュータからパーソナルファブリケーションへ (Make: Japan Books)』<br>
+        <small>オライリージャパン (2012/12/1) 978-4873115887<a href="https://www.amazon.co.jp/dp/4873115884" target="_blank"> amazon</a></small></li>
+    </ul>
+  <hr>
+  <footer>
+    <a href="https://github.com/FabResearch-KyushuUniv">Github</a>
+  </footer>
+</body>
+</html>

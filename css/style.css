@@ -1,0 +1,63 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Avenir Next', Avenir, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  max-width: 800px;
+  margin: auto;
+  padding: .2em;
+  line-height: 1.5em;
+}
+blockquote {
+    position: relative;
+    padding: 30px 15px 8px 15px;
+    box-sizing: border-box;
+    font-style: italic;
+    background: #efefef;
+    color: #555;
+}
+blockquote:before{
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    left: 3px;
+    vertical-align: middle;
+    content: "“";
+    font-family: sans-serif;
+    color: #cfcfcf;
+    font-size: 90px;
+    line-height: 1;
+}
+blockquote p {
+    padding: 0;
+    margin: 10px 0;
+    line-height: 1.7;
+}
+
+a {
+  color: #613DC1;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:visited {
+  color: #eb42f4;
+}
+
+p,ul {
+  margin-left: 20px;
+}
+/* Code Boxes */
+pre {
+  border: 1px solid #ddd;
+  box-shadow: 5px 5px 5px #eee;
+  background: #f8f8f8;
+  padding: 1em;
+  overflow-x: auto;
+}
+code {
+  background: #f9f9f9;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 85%;
+}
+pre code {
+   background: none;
+ }
