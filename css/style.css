@@ -31,17 +31,6 @@ blockquote p {
     line-height: 1.7;
 }
 
-a {
-  color: #613DC1;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-a:visited {
-  color: #eb42f4;
-}
-
 p,ul {
   margin-left: 20px;
 }
