@@ -1,60 +1,41 @@
-/**
- * Sine Wave
- * by Daniel Shiffman.  
- * 
- * Render a simple sine wave. 
- */
- import processing.svg.PGraphicsSVG;
- 
-int xspacing = 16;   // How far apart should each horizontal location be spaced
-int w;              // Width of entire wave
-
-float theta = 0.0;  // Start angle at 0
-float amplitude = 75.0;  // Height of wave
-float period = 500.0;  // How many pixels before the wave repeats
-float dx;  // Value for incrementing X, a function of period and xspacing
-float[] yvalues;  // Using an array to store height values for the wave
-
+import processing.svg.PGraphicsSVG;
+PShape s;
+int vertex_num = 80;
+int R = 200;
+float x;
+float y; 
 void setup() {
-  size(640, 360);
-  w = width+16;
-  dx = (TWO_PI / period) * xspacing;
-  yvalues = new float[w/xspacing];
+  size(1000, 1000);
+  s = createShape();
+  s.beginShape();
+  s.translate(width/2, height/2);
+  for (int i = 0; i < vertex_num; i++) {
+    x = R * cos(radians(360.0/vertex_num * i));
+    y = R * sin(radians(360.0/vertex_num * i));
+    s.vertex(x, y);
+  }
+  s.endShape(CLOSE);
 }
 
 void draw() {
-  background(0);
-  calcWave();
-  renderWave();
-  
+  background(255);
+  renderCircle();
   if(keyPressed) {
     if(key == 's') {
       println("save");
       beginRecord(SVG, "PApplet.svg");
-      renderWave();
+      renderCircle();
       endRecord();
     }
   }
-
 }
 
-void calcWave() {
-  // Increment theta (try different values for 'angular velocity' here
-  theta += 0.02;
-
-  // For every x value, calculate a y value with sine function
-  float x = theta;
-  for (int i = 0; i < yvalues.length; i++) {
-    yvalues[i] = sin(x)*amplitude;
-    x+=dx;
+void renderCircle() {
+  for (int i = 0; i < s.getVertexCount(); i++) {
+    PVector v = s.getVertex(i);
+    v.x += random(-1, 1);
+    v.y += random(-1, 1);
+    s.setVertex(i, v);
   }
-}
-
-void renderWave() {
-  noFill();
-  stroke(100);
-  // A simple way to draw the wave with an ellipse at each location
-  for (int x = 0; x < yvalues.length; x++) {
-    ellipse(x*xspacing, height/2+yvalues[x], 16, 16);
-  }
+  shape(s);
 }
