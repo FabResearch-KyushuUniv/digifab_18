@@ -43,7 +43,6 @@
 
   <h3>Processingのダウンロード</h3>
   <p><a href="https://processing.org/" target="_blank">公式サイト</a></p>
-  <p><a href="https://fabresearch-kyushuuniv.github.io/digifab_18/data/2D-modeling.zip">サンプルファイル(2D)</a></p>
   <p>(Windows向け) Processingの日本語化<br>
   <a href="http://neareal.net/index.php?Programming%2FProcessing%2FTips%2FEnableJapaneseComment" target="_blank">日本語のコメントを記述できるようにする</a>,
   <a href="http://zawaworks.hatenablog.com/entry/2017/03/13/160055" target="_blank">Processing:日本語テキストに使えるフォントは何種類？</a></p>
@@ -90,10 +89,30 @@
 
   <h4>波形の描画</h4>
   <p>/sample09_waveを参照してください。</p>
-
-
+  <p><a href="https://fabresearch-kyushuuniv.github.io/digifab_18/data/2D-modeling.zip">サンプルファイル(2D)</a></p>
   <hr>
 
+  <h3>3Dのデータを作る</h3>
+  <p>toxiclibsというライブラリを使って、最終的に3DのデータをSTLで書き出します。</p>
+  <h4>3Dモデリングの種類</h4>
+  <h4>モデリングソフト</h4>
+  <ul>
+    <li>3DCAD (Rhino, Fusion360, AutoCAD...)<br>二次元平面をスケッチして三次元にする</li>
+    <li>3DCG (Maya, Blender, Cinema4D)<br>三次元のメッシュを編集したりくっつけたりする</li>
+    <li>スカルプト系(Sculptris,ZBrush)<br>粘土をこねるようにモデルを作る</li>
+    <li>ノードプログラミング(Rhino+grasshopper)<br>数値や関数のブロックを繋げてモデリングする。</li>
+    <li>プログラミング</li>
+  </ul>
+  <h4>メッシュ</h4>
+  <p>コンピューターの中では三次元データは<strong>(x,y,z)の頂点(Vertex)</strong>それを結ぶ<strong>線(Edge)</strong>線を繋いでできる<strong>面(Face)</strong>で構成されます。<br>
+  これら集合が<strong>Mesh</strong>。3Dプリンタで出力するにはソリッドモデルである必要がある。→MESHを閉じる処理が必要</p>
+  <h4>STL(Standard Triangulated Language)フォーマット</h4>
+  <p>三次元モデルの各頂点、線、面(とその向き)が入っている。面の捻じれが起こらないように、全ての面は三角形で表現される必要がある。</p>
+
+  <p><a href="https://fabresearch-kyushuuniv.github.io/digifab_18/data/3D-modeling.zip">サンプルファイル(3D)</a></p>
+  <p><a href="https://fabresearch-kyushuuniv.github.io/digifab_18/data/toxiclibs-complete-0020.zip">toxiclibsライブラリ</a></p>
+
+  <hr>
   <h3>書籍リスト</h3>
   <ul>
       <li>『Processing:ビジュアルデザイナーとアーティストのためのプログラミング入門』<br>
