@@ -9,248 +9,78 @@ PeasyCam CAM;
 
 TriangleMesh mesh;
 ToxiclibsSupport gfx;
-VolumetricSpace volume = new VolumetricSpaceArray(new Vec3D(200,200,200), 200, 200, 200);  
+VolumetricSpace volume = new VolumetricSpaceArray(new Vec3D(250,250,250), 250, 250, 250);  
+
+//mesh = new TriangleMesh();//add
 
 IsoSurface surface = new ArrayIsoSurface(volume);
-VolumetricBrush brush = new RoundBrush(volume, 30);
+VolumetricBrush brushB = new RoundBrush(volume, 1);
+VolumetricBrush brushS = new RoundBrush(volume, 1);
+
 
 
 void setup() {
   size(600,600,P3D);
   CAM = new PeasyCam(this, 300);
   mesh = new TriangleMesh();
-  fibonatch(0,0,1,5,0);//左足
-  fibonatch2(10,0,1,5,-40);//左腕
-  fibonatch3(0,0,1,5,35);//頭
-  fibonatch4(0,0,1,5,0);//右足
-  fibonatch5(10,0,1,5,-40);//右腕
-  fibonatch6(0,0,1,5,35);//頭
-
-  //中心
-  //cube(0,0,0,10,0);
+  
+  brushS.setSize(2);
+  brushB.setSize(4);
+  tree(0,0,0,0);
 
   volume.closeSides();
   surface.reset();
   surface.computeSurfaceMesh(mesh, .5);
-  gfx = new ToxiclibsSupport(this);
+  gfx = new ToxiclibsSupport(this);    
 }
 
 
 //再帰関数
+void tree(float x, float y, float z,int c) {
+  c++;
+  int i,j;
+  float x1,y1,z1;
+  float angle=radians(60);
+  
+  Vec3D vec = new Vec3D(x,y,z);
+  //float nx = random(-0.8,0.8);
+  //float ny = random(-0.8,0.8);
+  
+  float nx = random(-0.8,0.8);
+  float ny = random(-0.8,0.8);
+ 
 
-void fibonatch(float x, float y, float r, int n, int angle){
-  float r1;
-  Vec3D vec1 = new Vec3D(x,y,0);
-  brush.setSize(r);
-  vec1.set(x,y,0);
-  brush.drawAtAbsolutePos(vec1,1);
-  if(n>=1){
-      r1 = r;
-      r = r + r1;
-      angle = angle + 15;
-      float theta = radians(angle);
-      x = x + r*cos(theta);
-      y = y + r*sin(theta);
-      fibonatch(x,y,r,n-1,angle);
-   
-  }  
+  for (i=0; i < 40; i ++) {
+    vec.set(x+nx*i, y+ny*i, z+0.5*i);
+    brushS.drawAtAbsolutePos(vec,1);
+  }
+  
+  if (c < 4) {
+    for(i=0;i<=c;i++){
+    tree(vec.x, vec.y, vec.z, c);
+    }
+  }
+  x1=vec.x;
+  y1=vec.y;
+  z1=vec.z;
+  
+   //pushMatrix();
+      for(j = 0; j< 4; j++) {//add
+      //ブラシの大きさを指定
+        brushB.setSize(10);
+       brushB.drawAtAbsolutePos(new Vec3D(x1,y1,z1),1);
+      }
+ // popMatrix();
 }
-void fibonatch2(float x, float y, float r, float n, int angle){
-  float r1;
-  Vec3D vec2 = new Vec3D(x,y,0);
-  brush.setSize(r*1.05);
-  vec2.set(x,y,25);
-  brush.drawAtAbsolutePos(vec2,1);
-  if(n>=1){
-      r1 = r;
-      r = r + r1;
-      angle = angle + 15;
-      float theta = radians(angle);
-      x = x + r*cos(theta);
-      y = y + r*sin(theta);
-      fibonatch2(x,y,r,n-1,angle);
-   
-  }  
-}
-void fibonatch3(float x, float y, float r, float n, int angle){
-  float r1;
-  Vec3D vec2 = new Vec3D(0,x,y);
-  brush.setSize(r);
-  vec2.set(0,-x,y);
-  brush.drawAtAbsolutePos(vec2,1);
-  if(n>=1){
-      r1 = r;
-      r = r + r1;
-      angle = angle + 15;
-      float theta = radians(angle);
-      x = x + r*cos(theta);
-      y = y + r*sin(theta);
-      fibonatch3(x,y,r,n-1,angle);
-   
-  }  
-}
-void fibonatch4(float x, float y, float r, float n, int angle){
-  float r1;
-  Vec3D vec1 = new Vec3D(x,y,0);
-  brush.setSize(r);
-  vec1.set(-x,y,0);
-  brush.drawAtAbsolutePos(vec1,1);
-  if(n>=1){
-      r1 = r;
-      r = r + r1;
-      angle = angle + 15;
-      float theta = radians(angle);
-      x = x + r*cos(theta);
-      y = y + r*sin(theta);
-      fibonatch4(x,y,r,n-1,angle);
-   
-  }  
-}
-void fibonatch5(float x, float y, float r, float n, int angle){
-  float r1;
-  Vec3D vec2 = new Vec3D(x,y,0);
-  brush.setSize(r);
-  vec2.set(-x,y,25);
-  brush.drawAtAbsolutePos(vec2,1);
-  if(n>=1){
-      r1 = r;
-      r = r + r1;
-      angle = angle + 15;
-      float theta = radians(angle);
-      x = x + r*cos(theta);
-      y = y + r*sin(theta);
-      fibonatch5(x,y,r,n-1,angle);
-   
-  }  
-}
-void fibonatch6(float x, float y, float r, float n, int angle){
-  float r1;
-  Vec3D vec3 = new Vec3D(0,x,y);
-  brush.setSize(r*1.05);
-  vec3.set(0,-x,y);
-  brush.drawAtAbsolutePos(vec3,1);
-  if(n>=1){
-      r1 = r;
-      r = r + r1;
-      angle = angle + 15;
-      float theta = radians(angle);
-      x = x + r*cos(theta);
-      y = y + r*sin(theta);
-      fibonatch6(x,y,r,n-1,angle);
-   
-  }  
-}
-void fibonatch7(float x, float y, float r, float n, int angle){
-  float r1;
-  Vec3D vec1 = new Vec3D(x,y,0);
-  brush.setSize(r*1.05);
-  vec1.set(x,y,0);
-  brush.drawAtAbsolutePos(vec1,1);
-  if(n>=1){
-      r1 = r;
-      r = r + r1;
-      angle = angle + 15;
-      float theta = radians(angle);
-      x = x + r*cos(theta);
-      y = y + r*sin(theta);
-      fibonatch7(x,-y,r,n-1,angle);
-   
-  }  
-}
-void fibonatch8(float x, float y, float r, float n, int angle){
-  float r1;
-  Vec3D vec2 = new Vec3D(y,0,x);
-  brush.setSize(r*1.05);
-  vec2.set(x,0,y);
-  brush.drawAtAbsolutePos(vec2,1);
-  if(n>=1){
-      r1 = r;
-      r = r + r1;
-      angle = angle + 15;
-      float theta = radians(angle);
-      x = x + r*cos(theta);
-      y = y + r*sin(theta);
-      fibonatch8(x,-y,r,n-1,angle);
-   
-  }  
-}
-void fibonatch9(float x, float y, float r, float n, int angle){
-  float r1;
-  Vec3D vec2 = new Vec3D(0,x,y);
-  brush.setSize(r*1.05);
-  vec2.set(0,x,y);
-  brush.drawAtAbsolutePos(vec2,1);
-  if(n>=1){
-      r1 = r;
-      r = r + r1;
-      angle = angle + 15;
-      float theta = radians(angle);
-      x = x + r*cos(theta);
-      y = y + r*sin(theta);
-      fibonatch9(x,-y,r,n-1,angle);
-   
-  }  
-}
-//void cube(float x, float y, float z, float b, int c) {
-//  c++;
-//  Vec3D vec1 = new Vec3D(x,y,z);
-//  Vec3D vec2 = new Vec3D(x,y,z);
-//  Vec3D vec3 = new Vec3D(x,y,z);
-//  Vec3D vec4 = new Vec3D(x,y,z);
-//  //Vec3D vec5 = new Vec3D(x,y,z);
-//  //Vec3D vec6 = new Vec3D(x,y,z);
-
-//  for ( int i=0; i < 50; i ++) {
-//    brush.setSize(b);
-//    vec1.set(x+0.1*i*b,y,z);
-//    brush.drawAtAbsolutePos(vec1, 1);
-//  }
-//  for ( int i=0; i < 50; i ++) {
-//    brush.setSize(b);
-//    vec2.set(x,y+0.1*i*b,z);
-//    brush.drawAtAbsolutePos(vec2, 1);
-//  }
-//  for ( int i=0; i < 50; i ++) {
-//    brush.setSize(b);
-//    vec3.set(x,y,z+0.1*i*b);
-//    brush.drawAtAbsolutePos(vec3, 1);
-//  }
-//  for ( int i=0; i < 50; i ++) {
-//    brush.setSize(b);
-//    vec4.set(x-0.1*i*b,y,z-0.5*b);
-//    brush.drawAtAbsolutePos(vec4, 1);
-//  }
-//  for ( int i=0; i < 50; i ++) {
-//    brush.setSize(b);
-//    //vec5.set(x,y-0.1*i*b,z-0.5*b);
-//    //brush.drawAtAbsolutePos(vec5, 1);
-//  }
-//  for ( int i=0; i < 50; i ++) {
-//    brush.setSize(b);
-//    //vec6.set(x,y,z-0.1*i*b);
-//    //brush.drawAtAbsolutePos(vec6, 1);
-//  }
-//  if (c < 4) {
-//    cube(vec1.x, vec1.y, vec1.z,0.5*b, c);
-//    cube(vec2.x, vec2.y, vec2.z,0.5*b, c);
-//    cube(vec3.x, vec3.y, vec3.z,0.5*b, c);
-//    cube(vec4.x, vec4.y, vec4.z,0.5*b, c);
-//    //cube(vec5.x, vec5.y, vec5.z,0.5*b, c);
-//    //cube(vec6.x, vec6.y, vec6.z,0.5*b, c);
-//  }
 //}
-
-
-
-
 
 void draw() {
   background(255);
   myLights();
+  fill(255);
   noStroke();
   
   gfx.mesh( mesh );
-    
     
   stroke(255, 0, 0);
   line(0, 0, 0, 1000, 0, 0);
@@ -258,11 +88,17 @@ void draw() {
   line(0, 0, 0, 0, 1000, 0);
   stroke(0, 0, 255);
   line(0, 0, 0, 0, 0, 1000); 
+  
+      //  for(j = 0; j< 4; j++) {//add
+      ////ブラシの大きさを指定
+      // brush.setSize(10);
+      // brush.drawAtAbsolutePos(new Vec3D(x1,y1,z1),1);
+      //}
 }
 
 void keyPressed() {
   if (key=='s') {
-    mesh.saveAsSTL( sketchPath( "fibo.stl" ));
+    mesh.saveAsSTL( sketchPath( "tree.stl" ));
   }
 }
 

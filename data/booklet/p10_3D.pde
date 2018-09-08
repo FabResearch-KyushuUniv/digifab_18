@@ -2,75 +2,48 @@ import toxi.volume.*;
 import toxi.geom.*;
 import toxi.geom.mesh.*;
 import toxi.processing.*;
+
 import peasy.*;
 PeasyCam CAM;
-
 TriangleMesh mesh;
+
 ToxiclibsSupport gfx;
-VolumetricSpace volume = new VolumetricSpaceArray(new Vec3D(250,250,250), 250, 250, 250);  
+VolumetricSpace volume = new VolumetricSpaceArray(new Vec3D(250, 250, 250), 250, 250, 250);  
+
 IsoSurface surface = new ArrayIsoSurface(volume);
-VolumetricBrush brush = new BoxBrush(volume, 10);
+VolumetricBrush brush = new RoundBrush(volume, 1);
 
 void setup() {
-  size(600,600,P3D);
+  size(600, 600, P3D);
   CAM = new PeasyCam(this, 300);
   mesh = new TriangleMesh();
-  brush.setSize(10);
-  //中心
-  cube(0,0,0,5,0);
+
+  brush.setSize(2);
+  Hexagon(0, 0, 0, 1, 0);
+
   volume.closeSides();
   surface.reset();
   surface.computeSurfaceMesh(mesh, .5);
   gfx = new ToxiclibsSupport(this);
 }
 
-//再帰関数
-void cube(float x, float y, float z, float b, int c) {
+void Hexagon(float x, float y, float z, float r, int c) {
   c++;
-  Vec3D vec1 = new Vec3D(x,y,z);
-  Vec3D vec2 = new Vec3D(x,y,z);
-  Vec3D vec3 = new Vec3D(x,y,z);
-  Vec3D vec4 = new Vec3D(x,y,z);
-  Vec3D vec5 = new Vec3D(x,y,z);
-  Vec3D vec6 = new Vec3D(x,y,z);
+  Vec3D vec=new Vec3D(x, y, z);
+  float[]cos={cos(0), cos(PI/3), cos(2*PI/3), cos(PI), cos(4*PI/3), cos(5*PI/3)};
+  float[]sin={sin(0), sin(PI/3), sin(2*PI/3), sin(PI), sin(4*PI/3), sin(5*PI/3)};
 
-  for ( int i=0; i < 50; i ++) {
-    brush.setSize(b);
-    vec1.set(x+0.1*i*b,y,z);
-    brush.drawAtAbsolutePos(vec1, 1);
-  }
-  for ( int i=0; i < 25; i ++) {
-    brush.setSize(b);
-    vec2.set(x,y+0.1*i*b,z);
-    brush.drawAtAbsolutePos(vec2, 1);
-  }
-  for ( int i=0; i < 50; i ++) {
-    brush.setSize(b);
-    vec3.set(x,y,z+0.1*i*b);
-    brush.drawAtAbsolutePos(vec3, 1);
-  }
-  for ( int i=0; i < 25; i ++) {
-    brush.setSize(b);
-    vec4.set(x-0.1*i*b,y,z-0.5*b);
-    brush.drawAtAbsolutePos(vec4, 1);
-  }
-  for ( int i=0; i < 50; i ++) {
-    brush.setSize(b);
-    vec5.set(x,y-0.1*i*b,z-0.5*b);
-    brush.drawAtAbsolutePos(vec5, 1);
-  }
-  for ( int i=0; i < 25; i ++) {
-    brush.setSize(b);
-    vec6.set(x,y,z-0.1*i*b);
-    brush.drawAtAbsolutePos(vec6, 1);
-  }
-  if (c < 3) {
-    cube(vec1.x, vec1.y, vec1.z,2.0*b, c);
-    cube(vec2.x, vec2.y, vec2.z,1.0*b, c);
-    cube(vec3.x, vec3.y, vec3.z,2.0*b, c);
-    cube(vec4.x, vec4.y, vec4.z,1.0*b, c);
-    cube(vec5.x, vec5.y, vec5.z,2.0*b, c);
-    cube(vec6.x, vec6.y, vec6.z,1.0*b, c);
+  for (int i=0; i<6; i++) {
+    for (int j=0; j<6; j++) {
+      for (int g=0; g<30; g++) {
+        vec.set(x+cos[j]*sin[i]*g*r, y+sin[i]*sin[j]*g*r, z+cos[i]*g*r);
+        brush.drawAtAbsolutePos(vec, 1);
+        if (c<2) {
+          float newR=2*r/3;
+          Hexagon(vec.x, vec.y, vec.z, newR, c);
+        }
+      }
+    }
   }
 }
 
@@ -78,20 +51,20 @@ void draw() {
   background(255);
   myLights();
   noStroke();
-  
-  gfx.mesh( mesh );
-    
+
+  gfx.mesh(mesh);
+
   stroke(255, 0, 0);
   line(0, 0, 0, 1000, 0, 0);
   stroke(0, 255, 0);
   line(0, 0, 0, 0, 1000, 0);
   stroke(0, 0, 255);
-  line(0, 0, 0, 0, 0, 1000); 
+  line(0, 0, 0, 0, 0, 1000);
 }
 
 void keyPressed() {
   if (key=='s') {
-    mesh.saveAsSTL( sketchPath( "cube.stl" ));
+    mesh.saveAsSTL( sketchPath( "my.stl" ));
   }
 }
 

@@ -1,42 +1,34 @@
+import processing.svg.PGraphicsSVG;
 
-//import processing.svg.PGraphicsSVG;
-
-//beginRecord(SVG, "MyFractal.svg");
-
-//int i, j;
-
-void setup(){
- size(700, 700);
- background(0);
- 
- rectMode(CENTER);
- 
- makeSquare(350, 350, 200, 5);
-
+void setup() {
+  size(600, 600);
+  noLoop();
 }
 
-void makeSquare(float x, float y, float a, int n){
-  noStroke();
-  fill(255);
-  rect(x, y, a, a);
-  if(1<n){
-    fill(0);
-    float a2 = a/3;
-    makeSquare(x-(a2*3), y-(a2*3), a2, n-1);
-    makeSquare(x, y-(a2*3), a2, n-1);
-    makeSquare(x+(a2*3), y-(a2*3), a2, n-1);
-    makeSquare(x-(a2*3), y, a2, n-1);
-    makeSquare(x+(a2*3), y, a2, n-1);
-    makeSquare(x-(a2*3), y+(a2*3), a2, n-1);
-    makeSquare(x, y+(a2*3), a2, n-1);
-    makeSquare(x+(a2*3), y+(a2*3), a2, n-1);
-    
-    //for(i=-1; i<=1; i++){
-    //  for(j=-1; j<=1; j++){
-    //    makeSquare(x+(i*(a2*3)), y+(j*(a2*3)), a2, n-1);
-    //  }
-    //}
+void draw() {
+  beginRecord(SVG, "shimata2.svg");
+  translate(width/2, height/2);
+ 
+  arcfunction(10);
+  endRecord();
+}
+
+void arcfunction(int counter) {
+  if(counter > 0) {
+    float s = 0;
+    float e = random(240);
+    int r = 50+counter*50;
+    float kaiten = (random(360));
+    strokeWeight(random(1,15));
+    //stroke(100,100,100);
+    fill(100,100,100);
+    //noFill();
+    arc(0, 0, r, r, radians(s), radians(e));
+    //fill(0,0,0);
+    ellipse(r/2*cos(radians(e)), r/2*sin(radians(e)), 4, 4);
+    //strokeWeight(1);
+    line(r/2*cos(radians(e)), r/2*sin(radians(e)),0,0);
+    rotate(radians(kaiten));
+    arcfunction(counter-1);
   }
 }
-
-//endRecord();
